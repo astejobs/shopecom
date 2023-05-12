@@ -3,7 +3,8 @@ import React, { useEffect } from 'react'
 import { useAlert } from 'react-alert';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
-import {  clearErrors, deleteUser, getAdminUsers } from '../../actions/userActions';
+import { clearErrors, deleteUser, getAdminUsers } from '../../actions/userActions';
+import { DELETE_USER_RESET } from '../../constants/userConstants';
 import Loader from '../layout/Loader';
 import MetaData from '../layout/MetaData';
 import Sidebar from './Sidebar';
@@ -13,7 +14,8 @@ const UsersList = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    const { loading, error, users} = useSelector(state => state.users)
+    const { loading, error, users } = useSelector(state => state.users)
+    const { isDeleted } = useSelector(state => state.user)
     console.log("users....", users);
     useEffect(() => {
         dispatch(getAdminUsers())
@@ -22,8 +24,14 @@ const UsersList = () => {
             dispatch(clearErrors());
         }
 
+        if (isDeleted) {
+            alert.success("User Deleted Successfully");
+            navigate('/Shopping/admin/users');
+            dispatch({ type: DELETE_USER_RESET });
+        }
 
-    }, [dispatch, error, alert, navigate])
+
+    }, [dispatch, error, alert, navigate, isDeleted])
 
     const deleteHandler = (id) => {
         dispatch(deleteUser(id))

@@ -24,7 +24,7 @@ import {
     ADMIN_USERS_FAIL,
     DELETE_USER_REQUEST,
     DELETE_USER_SUCCESS,
-    DELETE_USER_FAIL,
+    DELETE_USER_FAIL
    
 } from "../constants/userConstants"
 
