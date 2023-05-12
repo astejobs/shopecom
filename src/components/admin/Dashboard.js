@@ -77,7 +77,7 @@ const Dashboard = () => {
 
 
                                 </div>
-                                <Link className="card-footer  clearfix small z-1" to="/admin/products">
+                                <Link className="card-footer  clearfix small z-1" to="/Shopping/admin/products">
                                     <span className="float-left text-warning">View Details</span>
                                     <span className="float-right">
                                         <i className="fa fa-angle-right text-warning"></i>
@@ -107,7 +107,7 @@ const Dashboard = () => {
 
 
                                 </div>
-                                <Link className="card-footer  clearfix small z-1" to="/admin/orders">
+                                <Link className="card-footer  clearfix small z-1" to="/Shopping/admin/orders">
                                     <span className="float-left text-success">View Details</span>
                                     <span className="float-right">
                                         <i className="fa fa-angle-right text-success"></i>
@@ -138,7 +138,7 @@ const Dashboard = () => {
 
 
                                 </div>
-                                <Link className="card-footer  clearfix small z-1" to="/admin/users">
+                                <Link className="card-footer  clearfix small z-1" to="/Shopping/admin/users">
                                     <span className="float-left text-info ">View Details</span>
                                     <span className="float-right">
                                         <i className="fa fa-angle-right text-info"></i>

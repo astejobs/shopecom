@@ -204,7 +204,6 @@ export const deleteUser = (id) => async (dispatch) => {
         })
 
     } catch (error) {
-        console.log(error);
         dispatch({
             type: DELETE_USER_FAIL,
             payload: error.response.data.errMessage

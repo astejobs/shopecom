@@ -16,7 +16,6 @@ const UsersList = () => {
 
     const { loading, error, users } = useSelector(state => state.users)
     const { isDeleted } = useSelector(state => state.user)
-    console.log("users....", users);
     useEffect(() => {
         dispatch(getAdminUsers())
         if (error) {
