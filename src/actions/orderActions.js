@@ -15,7 +15,10 @@ import {
     ALL_ORDERS_FAIL,
     ORDER_DETAILS_REQUEST,
     ORDER_DETAILS_SUCCESS,
-    ORDER_DETAILS_FAIL
+    ORDER_DETAILS_FAIL,
+    DELETE_ORDER_REQUEST,
+    DELETE_ORDER_SUCCESS,
+    DELETE_ORDER_FAIL
 } from "../constants/orderConstants";
 
 export const createOrder = (order) => async (dispatch, getState) => {
@@ -37,6 +40,26 @@ export const createOrder = (order) => async (dispatch, getState) => {
         console.log(error);
         dispatch({
             type: CREATE_ORDER_FAIL,
+            payload: error.response.data.errMessage
+        })
+
+    }
+}
+//Delete Order
+export const deleteOrder = (id) => async (dispatch, getState) => {
+    try {
+        dispatch({ type: DELETE_ORDER_REQUEST })
+        
+        const { data } = await axios.delete(`/api/v1/admin/order/${id}`);
+        dispatch({
+            type: DELETE_ORDER_SUCCESS,
+            payload: data.success
+        })
+
+    } catch (error) {
+        console.log(error);
+        dispatch({
+            type: DELETE_ORDER_FAIL,
             payload: error.response.data.errMessage
         })
 

@@ -2,11 +2,12 @@ import React, { useEffect } from 'react'
 import { useAlert } from 'react-alert';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
-import { clearErrors, allOrders } from '../../actions/orderActions';
+import { clearErrors, allOrders, deleteOrder } from '../../actions/orderActions';
 import Sidebar from './Sidebar'
 import Loader from '../layout/Loader'
 import MetaData from '../layout/MetaData'
 import { MDBDataTable } from 'mdbreact';
+import { DELETE_ORDER_RESET } from '../../constants/orderConstants';
 
 const ProductsList = () => {
     const alert = useAlert();
@@ -14,6 +15,7 @@ const ProductsList = () => {
     const navigate = useNavigate();
 
     const { loading, error, orders } = useSelector(state => state.allOrders)
+    const { isDeleted } = useSelector(state => state.order)
     useEffect(() => {
         dispatch(allOrders())
         if (error) {
@@ -21,16 +23,16 @@ const ProductsList = () => {
             dispatch(clearErrors());
         }
 
-        // if(isDeleted) {
-        //     alert.success("Product Deleted Successfully");
-        //     navigate('/admin/products');
-        //     dispatch({ type: DELETE_PRODUCT_RESET });
-        // }
+        if (isDeleted) {
+            alert.success("Order Deleted Successfully");
+            navigate('/Shopping/admin/orders');
+            dispatch({ type: DELETE_ORDER_RESET });
+        }
 
-    }, [dispatch, error, alert, navigate])
+    }, [dispatch, error, alert, navigate, isDeleted])
 
     const deleteHandler = (id) => {
-        //dispatch((id))
+        dispatch(deleteOrder(id))
         console.log(id);
 
     }
@@ -60,7 +62,7 @@ const ProductsList = () => {
                     field: 'amount',
                     sort: 'asc'
                 },
-               
+
                 {
                     label: 'Status',
                     field: 'status',
@@ -86,7 +88,7 @@ const ProductsList = () => {
                 id: order._id,
                 numOfItems: order.orderItems.length,
                 amount: `₹${order.totalPrice}`,
-            
+
                 status: order.orderStatus && String(order.orderStatus).includes('Delivered')
                     ? <p style={{ color: 'green' }}>{order.orderStatus}</p>
                     : <p style={{ color: 'red' }}>{order.orderStatus}</p>,
@@ -122,7 +124,7 @@ const ProductsList = () => {
                                 data={setOrders()}
                                 className='px-3'
                                 bordered
-                                striped       
+                                striped
                                 responsive
                                 hover
                                 noBottomColumns={true}
