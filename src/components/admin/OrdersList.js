@@ -122,7 +122,7 @@ const ProductsList = () => {
                                 data={setOrders()}
                                 className='px-3'
                                 bordered
-                                striped
+                                striped  
                                 responsive
                                 hover
                                 noBottomColumns={true}
