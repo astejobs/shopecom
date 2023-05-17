@@ -21,6 +21,9 @@ const Sidebar = () => {
                             <li>
                                 <Link to="/Shopping/admin/product"><i className="fa fa-plus"></i> Create</Link>
                             </li>
+                            <li>
+                                <Link to="/Shopping/admin/addProductFile"><i className="fa fa-plus"></i> Upload CSV</Link>
+                            </li>
                         </ul>
                     </li>
 

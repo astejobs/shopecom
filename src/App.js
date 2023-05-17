@@ -33,6 +33,7 @@ import UsersList from './components/admin/UsersList';
 import ProcessOrder from './components/admin/ProcessOrder';
 import OrderDetails from './components/order/OrderDetails';
 import BannerCarousel from './components/BannerCarousel';
+import AddProductFile from './components/admin/AddProductFile';
 
 function App() {
   const [stripeApiKey, setStripeApiKey] = useState('');
@@ -97,6 +98,7 @@ function App() {
           <Route path='/Shopping/admin/products' element={<ProtectedRoute isAdmin={true} Component={ProductsList}></ProtectedRoute>}></Route>
           <Route path='/Shopping/admin/product/:id' element={<ProtectedRoute isAdmin={true} Component={UpdateProduct}></ProtectedRoute>}></Route>
           <Route path='/Shopping/admin/product' element={<ProtectedRoute isAdmin={true} Component={NewProduct}></ProtectedRoute>}></Route>
+          <Route path='/Shopping/admin/addProductFile' element={<ProtectedRoute isAdmin={true} Component={AddProductFile}></ProtectedRoute>}></Route>
           <Route path='/Shopping/admin/orders' element={<ProtectedRoute isAdmin={true} Component={OrdersList}></ProtectedRoute>}></Route>
           <Route path='/Shopping/admin/order/:id' element={<ProtectedRoute isAdmin={true} Component={ProcessOrder}></ProtectedRoute>}></Route>
           <Route path='/Shopping/admin/users' element={<ProtectedRoute isAdmin={true} Component={UsersList}></ProtectedRoute>}></Route>
